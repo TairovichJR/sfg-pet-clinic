@@ -67,13 +67,13 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<!-- <version>2.22.0</version> -->
-				<dependencies>
+				<!-- <dependencies>
 					<dependency>
 						<groupId>org.junit.platform</groupId>
 						<artifactId>junit-platform-surefire-provider</artifactId>
 						<version>1.2.0</version>
 					</dependency>
-				</dependencies>
+				</dependencies> -->
 			</plugin>
 		</plugins>
 	</build>
