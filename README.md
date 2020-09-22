@@ -1,3 +1,3 @@
-[![CircleCI](https://circleci.com/gh/TairovichJR/sfg-pet-clinic.svg?style=svg)](https://circleci.com/gh/TairovichJR/sfg-pet-clinic)
+[![CircleCI](https://circleci.com/gh/TairovichJR/sfg-pet-clinic.svg?style=svg)]
 
 #spring-framework-pet-clinic-project
