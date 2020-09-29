@@ -62,7 +62,7 @@ public class DataLoader implements CommandLineRunner {
 		
 		Owner michael = new Owner();
 		michael.setFirstName("Michael");
-		michael.setLastName("Weostn");
+		michael.setLastName("Weston");
 		michael.setAddress("123 Brickerel");
 		michael.setCity("Miami");
 		michael.setTelephone("224353546");
