@@ -104,6 +104,7 @@ public class OwnerSDJpaServiceTest {
 	public void delete() {
 		service.delete(returnOwner);
 		verify(ownerRepository, times(1)).delete(any());
+		
 	}
 
 	@Test

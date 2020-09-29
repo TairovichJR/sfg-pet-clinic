@@ -1,7 +1,7 @@
 package guru.springframework.sfgpetclinic.controllers;
 
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -73,4 +73,19 @@ public class OwnerControllerTest {
 
 		verifyZeroInteractions(ownerService);
 	}
+	
+	@Test
+	public void displayOwner() throws Exception {
+		
+		when(ownerService.findById(anyLong())).thenReturn(Owner.builder().id(1L).build());
+		
+		mockMvc.perform(get("/owners/1"))
+				.andExpect(status().is(200))
+				.andExpect(view().name("owners/ownerDetails"))
+				.andExpect(model().attributeExists("owner"))
+				.andExpect(model().attribute("owner", hasProperty("id", is(1L))));
+	}
+	
+	
+	
 }
