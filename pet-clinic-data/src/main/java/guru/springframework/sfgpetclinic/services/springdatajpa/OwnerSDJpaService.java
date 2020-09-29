@@ -1,6 +1,7 @@
 package guru.springframework.sfgpetclinic.services.springdatajpa;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -67,6 +68,11 @@ public class OwnerSDJpaService implements OwnerService {
 	@Override
 	public void deleteById(Long id) {
 		ownerRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Owner> findAllByLastNameLike(String lastName) {
+		return ownerRepository.findAllByLastNameLike(lastName);
 	}
 
 }
