@@ -90,7 +90,7 @@ public class DataLoader implements CommandLineRunner {
 		fiona.getPets().add(fionasCat);
 		
 		ownerService.save(fiona);
-		
+		 
 		System.out.println("--------Loaded Owners---------");
 		
 		Visit catVisit = new Visit();
@@ -101,8 +101,6 @@ public class DataLoader implements CommandLineRunner {
 		visitService.save(catVisit);
 		int count = visitService.findAll().size();
 		System.out.println("--------Loaded " + count + " Visits---------");
-		
-		
 		
 		/****** Specialty Objects *******/
 		Specialty radiology = new Specialty();
@@ -116,8 +114,6 @@ public class DataLoader implements CommandLineRunner {
 		Specialty dentistry = new Specialty();
 		dentistry.setDescription("Dentistry");
 		Specialty savedDentistry = specialtyService.save(dentistry);
-		
-		
 		
 		/****** Vet Objects *******/
 		Vet sam = new Vet();
