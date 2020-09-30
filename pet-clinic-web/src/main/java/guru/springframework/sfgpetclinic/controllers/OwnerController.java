@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import guru.springframework.sfgpetclinic.model.Owner;
+import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
+import guru.springframework.sfgpetclinic.services.PetService;
+import guru.springframework.sfgpetclinic.services.PetTypeService;
 
 @Controller
 @RequestMapping("/owners")
@@ -25,9 +29,10 @@ public class OwnerController {
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm"; 
 
 	private final OwnerService ownerService;
-	
-	public OwnerController(OwnerService ownerService) {
+	private final PetService petService;
+	public OwnerController(OwnerService ownerService, PetService petService) {
 		this.ownerService = ownerService;
+		this.petService = petService;
 	}
 	
 	@InitBinder
@@ -107,6 +112,9 @@ public class OwnerController {
 			return "redirect:/owners/"+savedOwner.getId();
 		}
 	}
+	
+	
+	
 	
 	
 }
