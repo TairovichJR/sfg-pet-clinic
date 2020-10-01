@@ -6,13 +6,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
-import java.net.URI;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,12 +17,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.util.UriTemplate;
-
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
-import guru.springframework.sfgpetclinic.model.Visit;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.VisitService;
 
@@ -52,10 +44,8 @@ public class VisitControllerTest {
 
 	MockMvc mockMvc;
 
-	private final UriTemplate visitsUriTemplate = new UriTemplate("/owners/{ownerId}/pets/{petId}/visits/new");
-	private final Map<String, String> uriVariables = new HashMap<>();
-	private URI visitsUri;
-
+	private final String VISIT_URI = "/owners/1/pets/1/visits/new";
+	
 	@BeforeEach
 	public void setUp() {
 		Long petId = 1L;
@@ -76,18 +66,13 @@ public class VisitControllerTest {
                             			.name("Dog").build())
                             .build()
                 );
-        
-        uriVariables.clear();
-        uriVariables.put("ownerId", ownerId.toString());
-        uriVariables.put("petId", petId.toString());
-        visitsUri = visitsUriTemplate.expand(uriVariables);
-
+ 
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build(); 
 	}
 
 	@Test
 	public void initNewVisitForm() throws Exception{
-		mockMvc.perform(get(visitsUri))
+		mockMvc.perform(get(VISIT_URI))
 				.andExpect(status().isOk())
 				.andExpect(view().name(PETS_CREATE_OR_UPDATE_VISIT_FORM));
 	}
@@ -95,7 +80,7 @@ public class VisitControllerTest {
 	@Test
 	public void processNewVisitForm() throws Exception{
 		
-		mockMvc.perform(post(visitsUri)
+		mockMvc.perform(post(VISIT_URI)
 				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 				.param("date", "2020-11-13")
 				.param("description", YET_ANOTHER_VISIT_DESCRIPTION))
@@ -104,21 +89,3 @@ public class VisitControllerTest {
 			.andExpect(model().attributeExists("visit"));
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
