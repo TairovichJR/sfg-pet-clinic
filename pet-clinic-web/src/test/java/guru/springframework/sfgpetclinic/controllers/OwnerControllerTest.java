@@ -79,13 +79,15 @@ public class OwnerControllerTest {
 	
 	@Test
 	public void processFindFormReturnMany() throws Exception {
-		 when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Owner.builder().id(1l).build(),
-				 Owner.builder().id(2l).build()));
+		 when(ownerService.findAllByLastNameLike(anyString()))
+         .thenReturn(Arrays.asList(Owner.builder().id(1l).build(),
+                 Owner.builder().id(2l).build()));
 
-		 mockMvc.perform(get("/owners"))
-		 				.andExpect(status().isOk())
-		 				.andExpect(view().name("owners/ownersList"))
-		 				.andExpect(model().attribute("selections", hasSize(2)));
+		 mockMvc.perform(get("/owners")
+                 		.param("lastName",""))
+		 			.andExpect(status().isOk())
+		 			.andExpect(view().name("owners/ownersList"))
+		 			.andExpect(model().attribute("selections", hasSize(2)));;
 	}
 	
 	

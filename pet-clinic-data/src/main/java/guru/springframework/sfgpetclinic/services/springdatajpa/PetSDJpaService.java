@@ -3,6 +3,8 @@ package guru.springframework.sfgpetclinic.services.springdatajpa;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 

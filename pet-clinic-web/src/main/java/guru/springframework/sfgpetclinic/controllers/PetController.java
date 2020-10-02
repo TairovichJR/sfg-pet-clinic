@@ -2,6 +2,8 @@ package guru.springframework.sfgpetclinic.controllers;
 
 import java.util.Collection;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -67,7 +69,7 @@ public class PetController {
 	}
 
 	@PostMapping("/pets/new")
-	public String processCreationForm(Owner owner, @Validated Pet pet, BindingResult result, Model model) {
+	public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, Model model) {
 		if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
 			result.rejectValue("name", "duplicate", "already exists");
 		}
@@ -76,6 +78,7 @@ public class PetController {
 			model.addAttribute("pet", pet);
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		} else {
+			pet.setOwner(owner);
 			petService.save(pet);
 			return "redirect:/owners/" + owner.getId();
 		}
@@ -88,14 +91,14 @@ public class PetController {
 	}
 	
 	@PostMapping("/pets/{petId}/edit")
-	public String processUpdateForm(@Validated Pet pet, BindingResult result, 
+	public String processUpdateForm(@Valid Pet pet, BindingResult result, 
 			Owner owner, Model model) {
 		if (result.hasErrors()) {
 			pet.setOwner(owner);
 			model.addAttribute("pet", pet);
 			return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
 		}else {
-			owner.getPets().add(pet);
+			pet.setOwner(owner);
 			petService.save(pet);
 			return "redirect:/owners/" + owner.getId(); 
 				
