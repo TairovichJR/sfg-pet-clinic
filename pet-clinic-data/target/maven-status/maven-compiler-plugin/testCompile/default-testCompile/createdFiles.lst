@@ -1,0 +1,7 @@
+guru\springframework\sfgpetclinic\services\map\PetSDJpaServiceTest.class
+guru\springframework\sfgpetclinic\services\map\PetTypeSDJpaServiceTest.class
+guru\springframework\sfgpetclinic\services\map\VisitSDJpaServiceTest.class
+guru\springframework\sfgpetclinic\services\map\SpecialtySDJpaServiceTest.class
+guru\springframework\sfgpetclinic\services\map\OwnerMapServiceTest.class
+guru\springframework\sfgpetclinic\services\map\OwnerSDJpaServiceTest.class
+guru\springframework\sfgpetclinic\services\map\VetSDJpaServiceTest.class
